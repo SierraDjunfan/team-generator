@@ -1,0 +1,139 @@
+$switch-width: 60px;
+$switch-height: 34px;
+$slider-height: 26px;
+$slider-width: 26px;
+$slider-left: 4px;
+$slider-bottom: 4px;
+$background-color: #ccc;
+$checked-background-color: #2196F3;
+$checked-box-shadow: 0 0 1px #2196F3;
+$transition-duration: 0.4s;
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: $switch-width;
+  height: $switch-height;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $background-color;
+    transition: $transition-duration;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: $slider-height;
+      width: $slider-width;
+      left: $slider-left;
+      bottom: $slider-bottom;
+      background-color: white;
+      transition: $transition-duration;
+    }
+  }
+
+  input:checked + .slider {
+    background-color: $checked-background-color;
+  }
+
+  input:focus + .slider {
+    box-shadow: $checked-box-shadow;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX($slider-width);
+  }
+
+  .slider.round {
+    border-radius: $switch-height;
+
+    &:before {
+      border-radius: 50%;
+    }
+  }
+}
+
+
+
+
+//Dropdown
+* {
+    box-sizing: border-box;
+    letter-spacing: 0.05rem;
+    outline: 0 none;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  body {
+    padding: 30px;
+  }
+  $height: 36;
+  label {
+    position: relative;
+    display: inline-block;
+    &:before {
+      content: '';
+      height: ($height - 5) + px;
+      position: absolute;
+      right: 7px;
+      top: 3px;
+      width: 22px;
+  
+      //background: -webkit-linear-gradient(#fff, #f0f0f0);
+      //background: -moz-linear-gradient(#fff, #f0f0f0);
+      //background: linear-gradient(#f5f5f5, #e0e0e0);
+      background: #fff; //for Firefox in Android
+  
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      pointer-events: none;
+      display: block;
+    }
+    &:after {
+      content: " ";
+      position: absolute;
+      right: 15px;
+      top: 46%;
+      margin-top: -3px;
+      z-index: 2;
+      pointer-events: none;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 6.9px 4px 0 4px;
+      border-color: #aaa transparent transparent transparent;
+      pointer-events: none;
+    }
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding: 0 30px 0 10px;
+  
+      border: 1px solid #e0e0e0;
+      border-radius: 3px;
+      line-height: $height + px;
+      height: $height + px;
+      //box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.2);
+      background: #fff;
+  
+      //min-width: 200px;
+      margin: 0 5px 5px 0;
+    }
+  }
+  //fix for ie 10 later
+  select::-ms-expand {
+    display: none;
+  }
