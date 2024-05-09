@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Inter&display=swap');
+
+* {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  user-select: none;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+//Colours
+$light-blue: #287194;
+$light-blue-hover: #144d67;
+$dark-blue: #023246;
+$dark-blue-hover: #02212e;
+$white: #F6F6F6;
+$white-hover: #ffffffdc;
+$lightest-grey: #d3d4ce36;
+$light-grey: #8181818b;
+$dark-grey: #2D2D2D;
+$dark-grey-hover: #2d2d2dd9;
+
+//Fonts
+$header-font: 'Fjalla One', sans-serif;
+$paragraph-font: 'Inter', sans-serif;
+$light-on-dark-color: #F6F6F6;
+$dark-on-light-color: #2D2D2D;
+
+//Variables
+$main-content-max-width: 960px;
+$basic-padding: 20px;
+$large-box-border-radius: 10px;
+$dropdown-padding: 5px 10px;
+
+//Mixins
+
+@mixin step-heading {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 22px;
+  color: $dark-on-light-color;
+  font-weight: 300;
+}
+
+@mixin rounded-border-box {
+  padding: $basic-padding;
+  border-radius: $large-box-border-radius;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+//Animations
+
+@keyframes fade-in {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
+}
+
+@keyframes showThenFade {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotateZ(0);
+  }
+  25% {
+    transform: rotateZ(-2deg);
+  }
+  75% {
+    transform: rotateZ(2deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
+}
+
+#app-header {
+  padding: $basic-padding;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: $dark-blue;
+  width: 100%;
+  
+  div {
+    width: 100%;
+    max-width: $main-content-max-width;
+    display:flex;
+    justify-content: flex-start;
+    background-color: $dark-blue;
+    
+    h1 {
+      font-family: $header-font;
+      font-size: 30px;
+      text-transform: uppercase;
+      color: $white;
+    }
+  }
+}
+
+#content-main {
+  width: 100%;
+  padding: $basic-padding;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: $basic-padding / 2;
+
+  @media (min-width: 768px) {
+    max-width: $main-content-max-width;
+    margin: 0 auto;
+    padding: $basic-padding;
+  }
+}
+
+.step-header {
+  @include rounded-border-box();
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+    h1 {
+      @include step-heading();
+    }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  .dropdown-button {
+    font-family: $header-font;
+    font-size: 20px;
+    color: $dark-grey;
+    padding: $dropdown-padding;
+    border: $dark-grey solid 2px;
+    cursor: pointer;
+    background: none;
+
+    &:hover {
+      background-color: $white-hover;
+    }
+  }
+  .dropdown-content {
+    min-width: 100%;
+    position: absolute;
+    z-index: 1;
+    display: none;
+    background-color: $white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+
+      .dropdown-content-button {
+        font-family: $header-font;
+        font-size: 20px;
+        text-decoration: none;
+        color: $dark-grey;
+        padding: $dropdown-padding;
+        border: none;
+        display: block;
+        &:hover {
+          background-color: $white-hover;
+        }
+      }
+  }
+  &:hover {
+    .dropdown-content {
+      display: block;
+    }
+  }
+}
+
+.header-button {
+  @include step-heading();
+  border: rgba(255, 255, 255, 0) solid 2px;
+  border-radius: $large-box-border-radius;
+  cursor: pointer;
+  padding: 12px 15px;
+  background: none;
+    &:hover {
+      background-color: $lightest-grey;
+    }
+}
+
+.header-button-selected {
+  border: $dark-grey solid 2px;
+}
+
+#name-entry {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: $basic-padding / 2;
+}
+
+#quick-add {
+  @include rounded-border-box();
+  flex: 2;
+    #quick-add-header {
+      font-family: $header-font;
+      font-size: 16px;
+      color: $dark-grey;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #quick-add-names {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: $basic-padding / 2;
+      margin-top: $basic-padding;
+    }
+}
+
+.name-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  input {
+    font-family: $header-font;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: $dark-grey;
+    width: 120px;
+    height: 20px;
+    padding: 5px 5px;
+    overflow: hidden;
+  }
+  .error-popup {
+    font-family: $header-font;
+    color: $white;
+    padding: 10px;
+    border: none;
+    border-radius: $large-box-border-radius;
+    position: absolute;
+    top: -50px;
+    left: 10px;
+    background-color: $dark-blue;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    animation: showThenFade 1.5s linear;
+  }
+}
+
+.action-button {
+  font-family: $header-font;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #F6F6F6;
+  height: 30px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 2cqmin;
+  display: flex;
+  align-items: center;
+  background-color: #2D2D2D;
+  cursor: pointer;
+  &:hover {
+    background-color: $dark-grey-hover;
+  }
+}
+
+.selectable-name {
+  font-family: $header-font;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #F6F6F6;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: $light-blue;
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  cursor: pointer; 
+
+  &:hover {
+    background-color: $light-blue-hover;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+
+  button {
+    color: $white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: $dark-blue;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    &:hover {
+      background-color: $dark-blue-hover;
+    }
+
+    &:before {
+      content: "x"
+      }
+  }
+}
+
+.wiggle {
+  animation: wiggle 0.28s linear infinite;
+}
+
+h2 {
+  @include step-heading();
+}
+
+#names-list {
+  flex: 3;
+  padding: $basic-padding;
+  display: flex;
+  flex-direction: column;
+  gap: $basic-padding / 2;
+  @include rounded-border-box();
+    #listed-names {
+      margin-top: $basic-padding / 2;
+      display: flex;
+      flex-direction: row;
+      gap: $basic-padding / 2;
+      flex-wrap: wrap;
+    }
+}
+
+#team-generation {
+  display: flex;
+  flex-direction: row;
+  gap: $basic-padding / 2;
+}
+
+h3 {
+  font-family: $header-font;
+  font-weight: 100;
+  font-size: 20px;
+  color: $light-grey;
+}
+
+#team-display {
+  margin-top: $basic-padding / 2;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  .team {
+    @include rounded-border-box();
+    display: flex;
+    flex-direction: column;
+    gap: $basic-padding / 4;
+      h2 {
+        text-transform: uppercase;
+      }
+      p {
+        font-family: $paragraph-font;
+        text-transform: capitalize;
+      }
+  }
+}
+
+footer {
+  font-family: $paragraph-font;
+
+  background-color: $dark-blue;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content p, .footer-content a {
+  margin: 0;
+  padding: 5px;
+  font-size: 16px;
+  color: #ecf0f1;
+  text-decoration: none;
+}
