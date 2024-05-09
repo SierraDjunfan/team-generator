@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/team-generator/static/css/main.f695dfeb.css",
+    "main.js": "/team-generator/static/js/main.df78e84b.js",
+    "index.html": "/team-generator/index.html",
+    "main.f695dfeb.css.map": "/team-generator/static/css/main.f695dfeb.css.map",
+    "main.df78e84b.js.map": "/team-generator/static/js/main.df78e84b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f695dfeb.css",
+    "static/js/main.df78e84b.js"
+  ]
+}
