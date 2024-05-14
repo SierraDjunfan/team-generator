@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Inter&display=swap');
 
 * {
-  margin: 0 0 0 0;
-  padding: 0 0 0 0;
+  margin: 0;
+  padding: 0;
   user-select: none;
 }
 
@@ -10,7 +10,41 @@ body {
   overflow-x: hidden;
 }
 
-//Colours
+// Media queries for responsive font sizes
+html {
+  font-size: 16px; // Default base font size
+
+  @media (min-width: 320px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 992px) {
+    font-size: 20px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 22px;
+  }
+
+  @media (min-width: 1400px) {
+    font-size: 24px;
+  }
+}
+
+// Define font size variables
+:root {
+  --text-smaller: 0.6rem;
+  --text-small: 0.8rem;
+  --text-medium: 1rem;
+  --text-large: 1.2rem;
+  --text-larger: 1.5rem;
+}
+
+// Colours
 $light-blue: #287194;
 $light-blue-hover: #144d67;
 $dark-blue: #023246;
@@ -22,23 +56,22 @@ $light-grey: #8181818b;
 $dark-grey: #2D2D2D;
 $dark-grey-hover: #2d2d2dd9;
 
-//Fonts
+// Fonts
 $header-font: 'Fjalla One', sans-serif;
 $paragraph-font: 'Inter', sans-serif;
 $light-on-dark-color: #F6F6F6;
 $dark-on-light-color: #2D2D2D;
 
-//Variables
+// Variables
 $main-content-max-width: 960px;
 $basic-padding: 20px;
 $large-box-border-radius: 10px;
 $dropdown-padding: 5px 10px;
 
-//Mixins
-
+// Mixins
 @mixin step-heading {
   font-family: 'Fjalla One', sans-serif;
-  font-size: 22px;
+  font-size: var(--text-medium);
   color: $dark-on-light-color;
   font-weight: 300;
 }
@@ -49,23 +82,22 @@ $dropdown-padding: 5px 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-//Animations
-
+// Animations
 @keyframes fade-in {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
 @keyframes fadeOut {
   from {
-      opacity: 1;
+    opacity: 1;
   }
   to {
-      opacity: 0;
+    opacity: 0;
   }
 }
 
@@ -96,6 +128,12 @@ $dropdown-padding: 5px 10px;
   }
 }
 
+#app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 #app-header {
   padding: $basic-padding;
   display: flex;
@@ -107,13 +145,13 @@ $dropdown-padding: 5px 10px;
   div {
     width: 100%;
     max-width: $main-content-max-width;
-    display:flex;
+    display: flex;
     justify-content: flex-start;
     background-color: $dark-blue;
     
     h1 {
       font-family: $header-font;
-      font-size: 30px;
+      font-size: var(--text-larger);
       text-transform: uppercase;
       color: $white;
     }
@@ -127,6 +165,7 @@ $dropdown-padding: 5px 10px;
   display: flex;
   flex-direction: column;
   gap: $basic-padding / 2;
+  flex: 1;
 
   @media (min-width: 768px) {
     max-width: $main-content-max-width;
@@ -142,9 +181,10 @@ $dropdown-padding: 5px 10px;
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-    h1 {
-      @include step-heading();
-    }
+
+  h1 {
+    @include step-heading();
+  }
 }
 
 .dropdown {
@@ -153,7 +193,7 @@ $dropdown-padding: 5px 10px;
 
   .dropdown-button {
     font-family: $header-font;
-    font-size: 20px;
+    font-size: var(--text-medium);
     color: $dark-grey;
     padding: $dropdown-padding;
     border: $dark-grey solid 2px;
@@ -164,27 +204,30 @@ $dropdown-padding: 5px 10px;
       background-color: $white-hover;
     }
   }
+
   .dropdown-content {
     min-width: 100%;
     position: absolute;
     z-index: 1;
     display: none;
     background-color: $white;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 
-      .dropdown-content-button {
-        font-family: $header-font;
-        font-size: 20px;
-        text-decoration: none;
-        color: $dark-grey;
-        padding: $dropdown-padding;
-        border: none;
-        display: block;
-        &:hover {
-          background-color: $white-hover;
-        }
+    .dropdown-content-button {
+      font-family: $header-font;
+      font-size: var(--text-medium);
+      text-decoration: none;
+      color: $dark-grey;
+      padding: $dropdown-padding;
+      border: none;
+      display: block;
+
+      &:hover {
+        background-color: $white-hover;
       }
+    }
   }
+
   &:hover {
     .dropdown-content {
       display: block;
@@ -199,9 +242,10 @@ $dropdown-padding: 5px 10px;
   cursor: pointer;
   padding: 12px 15px;
   background: none;
-    &:hover {
-      background-color: $lightest-grey;
-    }
+
+  &:hover {
+    background-color: $lightest-grey;
+  }
 }
 
 .header-button-selected {
@@ -218,23 +262,25 @@ $dropdown-padding: 5px 10px;
 #quick-add {
   @include rounded-border-box();
   flex: 2;
-    #quick-add-header {
-      font-family: $header-font;
-      font-size: 16px;
-      color: $dark-grey;
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-      justify-content: space-between;
-      align-items: center;
-    }
-    #quick-add-names {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: $basic-padding / 2;
-      margin-top: $basic-padding;
-    }
+
+  #quick-add-header {
+    font-family: $header-font;
+    font-size: var(--text-medium);
+    color: $dark-grey;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #quick-add-names {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $basic-padding / 2;
+    margin-top: $basic-padding;
+  }
 }
 
 .name-input {
@@ -243,9 +289,10 @@ $dropdown-padding: 5px 10px;
   align-items: center;
   gap: 5px;
   position: relative;
+
   input {
     font-family: $header-font;
-    font-size: 16px;
+    font-size: var(--text-medium);
     text-transform: uppercase;
     color: $dark-grey;
     width: 120px;
@@ -253,6 +300,7 @@ $dropdown-padding: 5px 10px;
     padding: 5px 5px;
     overflow: hidden;
   }
+
   .error-popup {
     font-family: $header-font;
     color: $white;
@@ -270,7 +318,7 @@ $dropdown-padding: 5px 10px;
 
 .action-button {
   font-family: $header-font;
-  font-size: 16px;
+  font-size: var(--text-small);
   text-transform: uppercase;
   color: #F6F6F6;
   height: 30px;
@@ -281,6 +329,7 @@ $dropdown-padding: 5px 10px;
   align-items: center;
   background-color: #2D2D2D;
   cursor: pointer;
+
   &:hover {
     background-color: $dark-grey-hover;
   }
@@ -288,7 +337,7 @@ $dropdown-padding: 5px 10px;
 
 .selectable-name {
   font-family: $header-font;
-  font-size: 16px;
+  font-size: var(--text-small);
   text-transform: uppercase;
   color: #F6F6F6;
   padding: 5px 10px;
@@ -327,8 +376,8 @@ $dropdown-padding: 5px 10px;
     }
 
     &:before {
-      content: "x"
-      }
+      content: "x";
+    }
   }
 }
 
@@ -347,13 +396,14 @@ h2 {
   flex-direction: column;
   gap: $basic-padding / 2;
   @include rounded-border-box();
-    #listed-names {
-      margin-top: $basic-padding / 2;
-      display: flex;
-      flex-direction: row;
-      gap: $basic-padding / 2;
-      flex-wrap: wrap;
-    }
+
+  #listed-names {
+    margin-top: $basic-padding / 2;
+    display: flex;
+    flex-direction: row;
+    gap: $basic-padding / 2;
+    flex-wrap: wrap;
+  }
 }
 
 #team-generation {
@@ -365,7 +415,7 @@ h2 {
 h3 {
   font-family: $header-font;
   font-weight: 100;
-  font-size: 20px;
+  font-size: var(--text-medium);
   color: $light-grey;
 }
 
@@ -374,38 +424,40 @@ h3 {
   display: flex;
   flex-direction: row;
   gap: 10px;
+
   .team {
     @include rounded-border-box();
     display: flex;
     flex-direction: column;
     gap: $basic-padding / 4;
-      h2 {
-        text-transform: uppercase;
-      }
-      p {
-        font-family: $paragraph-font;
-        text-transform: capitalize;
-      }
+    
+    h2 {
+      text-transform: uppercase;
+    }
+    
+    p {
+      font-family: $paragraph-font;
+      text-transform: capitalize;
+    }
   }
 }
 
 footer {
   font-family: $paragraph-font;
-
   background-color: $dark-blue;
   color: white;
   text-align: center;
   padding: 20px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
-}
-
-.footer-content p, .footer-content a {
-  margin: 0;
-  padding: 5px;
-  font-size: 16px;
-  color: #ecf0f1;
-  text-decoration: none;
+  
+  .footer-content p, .footer-content a {
+    margin: 0;
+    padding: 5px;
+    font-size: var(--text-smaller);
+    color: #ecf0f1;
+    text-decoration: none;
+  }
+  .footer-content a {
+    color: #FFA500;
+  }
 }
