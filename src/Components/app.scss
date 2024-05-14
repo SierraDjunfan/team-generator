@@ -50,7 +50,7 @@ $light-blue-hover: #144d67;
 $dark-blue: #023246;
 $dark-blue-hover: #02212e;
 $white: #F6F6F6;
-$white-hover: #ffffffdc;
+$white-hover: #F6F6F6;
 $lightest-grey: #d3d4ce36;
 $light-grey: #8181818b;
 $dark-grey: #2D2D2D;
@@ -199,6 +199,7 @@ $dropdown-padding: 5px 10px;
     border: $dark-grey solid 2px;
     cursor: pointer;
     background: none;
+    background-color: white;
 
     &:hover {
       background-color: $white-hover;
@@ -221,6 +222,8 @@ $dropdown-padding: 5px 10px;
       padding: $dropdown-padding;
       border: none;
       display: block;
+      background-color: white;
+      cursor: pointer;
 
       &:hover {
         background-color: $white-hover;
